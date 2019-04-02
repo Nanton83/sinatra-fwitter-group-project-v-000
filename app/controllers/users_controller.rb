@@ -17,7 +17,6 @@ class UsersController < ApplicationController
         @user = User.create(username: params[:username], password: params[:password], email: params[:email])
         @user.save
         session[:user_id] = @user.id
-
         redirect to "/tweets"
         end
     end
@@ -34,7 +33,6 @@ class UsersController < ApplicationController
       @user = User.find_by(:username => params[:username])
       if @user && @user.authenticate(params[:password])
         session[:user_id] = @user.id
-
         redirect "/tweets"
       else
         redirect to '/signup'
