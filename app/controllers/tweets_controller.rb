@@ -21,10 +21,11 @@ class TweetsController < ApplicationController
 
     post '/tweets' do
         if logged_in? && params[:content] == ""
-            redirect to '/tweets/new'
+            redirect to 'tweets/new'
         elsif logged_in?
-        @tweet = params[:content]
-        redirect to '/tweets/tweets'
+        @tweet = current_user.tweets
+        binding.pry
+        redirect to "tweets/#{@tweet.id}"
         else
         redirect to "/login"
         end
